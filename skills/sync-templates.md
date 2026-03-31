@@ -16,12 +16,19 @@ Templates ──import──> Project Skills ──improve──> Project Skills
     └────────────── learning flows both ways ───────────────────────────────────┘
 ```
 
+## Setup
+Set `TEMPLATE_DIR` to the local path where this repo is cloned. Example:
+```bash
+export TEMPLATE_DIR="$HOME/project-templates"
+```
+Ensure `~/.git-push-secure.sh` and `~/.github-token` (permissions 600) exist on each machine. See README for details.
+
 ## Instructions
 
 ### Phase 0: Pull latest templates
-Templates are version-controlled at `github.com/alexeybeketov/Project-Templates`. Always pull before syncing:
+Templates are version-controlled on GitHub. Always pull before syncing:
 ```bash
-/volume1/home/nas_alexey/.git-push-secure.sh /volume1/home/nas_alexey/project-templates pull
+~/.git-push-secure.sh $TEMPLATE_DIR pull
 ```
 This ensures you're comparing against the latest version, including improvements from other projects/machines.
 
@@ -62,7 +69,7 @@ After improving a skill in any project:
 3. **Update the template**
    ```bash
    # Strip project-specific details, keep universal patterns
-   cp .claude/skills/improved-skill.md /volume1/home/nas_alexey/project-templates/skills/
+   cp .claude/skills/improved-skill.md $TEMPLATE_DIR/skills/
    # Review: remove project-specific commands, paths, endpoints
    ```
 
@@ -71,17 +78,17 @@ After exporting improvements, commit and push so other machines can pull:
 
 1. **Stage changed files by name** (never `git add -A`)
    ```bash
-   git -C /volume1/home/nas_alexey/project-templates add <specific files>
+   git -C $TEMPLATE_DIR add <specific files>
    ```
 
 2. **Commit with context**
    ```bash
-   git -C /volume1/home/nas_alexey/project-templates commit -m "Sync: <what changed>"
+   git -C $TEMPLATE_DIR commit -m "Sync: <what changed>"
    ```
 
 3. **Push using the secure wrapper** (token read from ~/.github-token, permissions 600)
    ```bash
-   /volume1/home/nas_alexey/.git-push-secure.sh /volume1/home/nas_alexey/project-templates
+   ~/.git-push-secure.sh $TEMPLATE_DIR
    ```
 
 ### Security rules

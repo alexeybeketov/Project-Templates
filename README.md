@@ -63,7 +63,13 @@ Templates ──import──> Project Skills ──improve──> Project Skills
 
 ## Multi-Machine Sync
 
-Templates are synced to GitHub at [Project-Templates](https://github.com/alexeybeketov/Project-Templates). The `/sync-templates` skill includes a Phase 4 that commits and pushes changes via a secure wrapper script.
+Templates are synced to GitHub via `/sync-templates`. The skill includes phases for pulling, exporting, committing, and pushing changes via a secure wrapper script.
+
+### Setup per machine
+1. Clone this repo: `git clone <your-repo-url> ~/project-templates`
+2. Set `TEMPLATE_DIR` to the clone path (e.g., `export TEMPLATE_DIR="$HOME/project-templates"`)
+3. Create `~/.github-token` with a GitHub PAT (repo scope): `echo 'ghp_...' > ~/.github-token && chmod 600 ~/.github-token`
+4. Copy `~/.git-push-secure.sh` from an existing machine (or create per the pattern in `/sync-templates`) and `chmod 700` it
 
 **Security:** GitHub token is stored outside the repo in `~/.github-token` (permissions 600). Never committed, never logged.
 
