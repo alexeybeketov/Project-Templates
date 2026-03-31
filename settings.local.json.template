@@ -1,0 +1,37 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "The user is about to run a git commit. Check: has the /plan scope check been done for this change? Has the /review checklist been explicitly run? If BOTH were done, allow. If either was skipped, respond with a reminder to run them first. Only check for git commit commands.",
+            "if": "Bash(git commit:*)"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.file_path // .tool_response.filePath // \"\"' | grep -q '\\.claude/skills/' && echo '{\"hookSpecificOutput\": {\"hookEventName\": \"PostToolUse\", \"additionalContext\": \"A skill file was modified. Run /sync-templates to sync improvements to the universal template library.\"}}' || true"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '{\"systemMessage\": \"Reminders: (1) Run /document if behavior changed. (2) Run /retrospective if you deployed. (3) Run /improve if 3+ changes. (4) Run /sync-templates if skills were updated.\"}'"
+          }
+        ]
+      }
+    ]
+  }
+}
