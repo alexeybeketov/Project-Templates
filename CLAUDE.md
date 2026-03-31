@@ -154,4 +154,6 @@ Use the **5 Whys** on every issue: symptom → cause → why it existed → why 
 | 2 | Solution design | Evaluate 2+ options before implementing | |
 | 3 | Function removal | Grep for ALL references before committing | |
 | 4 | UI state management | Async ops need: inProgress guard, interval cleanup, close/escape blocking, reset | |
+| 5 | Docker cleanup | After builds: `docker image prune -f` and `docker builder prune --all -f` — old images don't auto-clean | Wizard + SV |
+| 6 | Data preservation | NEVER delete/clear data to fix a bug. Migrate, transform, or add a column instead | Wizard + SV |
 <!-- Add lessons as they occur -->
