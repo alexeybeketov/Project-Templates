@@ -44,14 +44,12 @@ Templates and project skills form a closed learning loop:
 
 ```
 Templates ──import──> Project Skills ──improve──> Project Skills ──export──> Templates
-                                                                       │
-                                                                  git push
-                                                                       │
-                                                                    GitHub
-                                                                       │
-                                                                  git pull
-                                                                       │
-                                                                Other Machines
+                                                                                │
+                                                                           git push
+                                                                                │
+Machine A ──push──> GitHub ──pull──> Machine B ──improve──> push ──> GitHub
+    ▲                                                                    │
+    └──────────────────────── pull ◄─────────────────────────────────────┘
 ```
 
 **Rules:**
