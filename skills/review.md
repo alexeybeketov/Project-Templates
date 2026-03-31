@@ -10,14 +10,16 @@ After implementing, before committing. Invoke with `/review`.
 ### Security
 - [ ] No auth bypasses on new endpoints
 - [ ] User input validated at boundaries
-- [ ] Error messages don't leak internals
+- [ ] Error messages don't leak internals (return generic messages, log details server-side)
 - [ ] No hardcoded secrets, IPs, credentials
-- [ ] All user-controlled strings escaped before output
+- [ ] All user-controlled strings escaped before output (XSS)
+- [ ] SQL queries use parameterized statements (no string interpolation)
 - [ ] File writes use atomic pattern (temp + rename)
+- [ ] CSRF middleware defined AND applied to route mounts (not just defined)
 
 ### Functionality
 - [ ] Does exactly what was asked — nothing more
-- [ ] All dependent files checked
+- [ ] All dependent files checked — search ALL views/instances (not just the first one found)
 - [ ] If removing a function: grep for all references
 - [ ] No data deletion to fix bugs — migrate in place
 
@@ -26,6 +28,8 @@ After implementing, before committing. Invoke with `/review`.
 - [ ] Intervals/timeouts tracked and cleared on close/navigate
 - [ ] Modal close/escape blocked during operations
 - [ ] All UI elements reset on retry/back/close
+- [ ] React hooks at component top level (never inside IIFEs, loops, or conditionals)
+- [ ] localStorage persistence effects don't fire on mount with empty state (use mount guard)
 
 ### Performance
 - [ ] No repeated expensive operations per request

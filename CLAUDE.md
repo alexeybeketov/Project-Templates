@@ -156,4 +156,12 @@ Use the **5 Whys** on every issue: symptom → cause → why it existed → why 
 | 4 | UI state management | Async ops need: inProgress guard, interval cleanup, close/escape blocking, reset | |
 | 5 | Docker cleanup | After builds: `docker image prune -f` and `docker builder prune --all -f` — old images don't auto-clean | Wizard + SV |
 | 6 | Data preservation | NEVER delete/clear data to fix a bug. Migrate, transform, or add a column instead | Wizard + SV |
+| 7 | Docker ContainerConfig | `docker rm -f <container>` before `docker-compose up -d --no-deps` prevents KeyError on recreate | SPT |
+| 8 | React hooks placement | Never place useState/useRef/useEffect inside nested render functions (IIFEs) — always at component top level | SPT |
+| 9 | localStorage mount guard | Reset useEffects fire on mount with empty state, overwriting saved values. Use useRef mount guard to skip first render | SPT |
+| 10 | Multi-network Traefik | Services on 2+ Docker networks need `traefik.docker.network` label or Traefik picks wrong IP (504) | SPT |
+| 11 | Redis URL passwords | Passwords containing `/` break ioredis URL parsing. Use hex-only passwords for Redis URLs | SPT |
+| 12 | CSRF defined ≠ applied | Defining CSRF middleware but not adding it to route mounts = zero protection. Verify middleware is in the `app.use()` chain | SPT |
+| 13 | Error message leakage | Never return `err.message` to clients — DB errors expose schema. Return generic message, log details server-side | SPT |
+| 14 | Fix ALL instances | Two tables/views showing same data — fixing one misses the other. Always search for ALL instances before declaring complete | SPT |
 <!-- Add lessons as they occur -->

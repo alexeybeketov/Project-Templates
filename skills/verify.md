@@ -17,6 +17,11 @@ After a release or restart. Invoke with `/verify`.
 - **Mobile affected** → test on mobile browser
 - **Config changed** → verify service restarts cleanly
 
+## Docker-specific checks
+- **ContainerConfig error** → `docker rm -f <container>` then redeploy
+- **Multi-network routing** → verify `traefik.docker.network` label set for services on 2+ networks
+- **Stale container name** → `docker ps -a --filter "name=<service>"` to find actual name/ID
+
 ## Output format
 ```
 ## Verify — vX.Y.Z

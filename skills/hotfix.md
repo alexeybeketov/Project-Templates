@@ -31,6 +31,10 @@ Run `/verify` then `/retrospective`
 | 502/503 errors | App process not started | Check logs |
 | Config error on start | Bad config file | Validate syntax |
 | Auth failures | Rate limited or expired | Restart service |
+| Docker ContainerConfig KeyError | Stale container state after build | `docker rm -f <container>` then redeploy |
+| White screen (React) | Hooks inside render IIFE/nested function | Move hooks to component top level |
+| 504 Gateway Timeout (Traefik) | Multi-network container, wrong IP | Add `traefik.docker.network` label |
+| Redis ECONNREFUSED | Password with `/` breaks URL parsing | Use hex-only passwords in Redis URLs |
 
 ## Output format
 ```
