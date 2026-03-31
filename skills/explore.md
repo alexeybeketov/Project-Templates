@@ -9,15 +9,28 @@ When understanding how something works across multiple files. Invoke with `/expl
 Load **max 5-8 files** per investigation to prevent context overflow. If more files are needed, split into multiple explorations.
 
 ## Instructions
-Use an Explore agent:
+
+Use an Explore agent to avoid cluttering main context:
 ```
-Agent(subagent_type="Explore", prompt="[question]. Limit reading to max 8 files.")
+Agent(subagent_type="Explore", prompt="[question]", description="Explore: [3 words]")
 ```
 
-### When NOT to use
+### Good use cases
+- "How does auth flow work end-to-end?"
+- "What files consume this config?"
+- "Find all places user input reaches the output"
+- "Trace the data flow from input to storage"
+
+### When NOT to use (use direct tools instead)
 - Simple file lookup → Glob
 - Single pattern search → Grep
 - Known file path → Read
+
+### Thoroughness
+Specify in prompt: "quick", "medium", or "very thorough"
+
+### Fallback (if Agent unavailable)
+Use Grep + Read directly
 
 ## Output format
 ```

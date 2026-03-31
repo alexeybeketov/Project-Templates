@@ -21,6 +21,16 @@
             "command": "jq -r '.tool_input.file_path // .tool_response.filePath // \"\"' | grep -q '\\.claude/skills/' && echo '{\"hookSpecificOutput\": {\"hookEventName\": \"PostToolUse\", \"additionalContext\": \"A skill file was modified. Run /sync-templates to sync improvements to the universal template library.\"}}' || true"
           }
         ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.command // \"\"' | grep -q 'git tag -a' && echo '{\"hookSpecificOutput\": {\"hookEventName\": \"PostToolUse\", \"additionalContext\": \"Release tagged. Run /document to update docs if behavior changed. Then run /retrospective.\"}}' || true",
+            "if": "Bash(git tag:*)"
+          }
+        ]
       }
     ],
     "Stop": [

@@ -7,32 +7,33 @@ Before major releases or periodically. Invoke with `/audit`.
 
 ## Instructions
 
-Use parallel Explore agents for thorough analysis:
-- Agent 1: Backend code (security, auth, data handling)
-- Agent 2: Frontend code (XSS, UX, performance)
-- Agent 3: Infrastructure (config, deployment, dependencies)
+Launch 3 parallel audit agents for comprehensive coverage:
 
-### Security checks
-- Auth on all endpoints
-- User data escaped before output
-- Input validation at boundaries
-- No hardcoded credentials
-- No path traversal vulnerabilities
+**Agent 1 — Backend:** server code, API, database, auth
+```
+Agent(subagent_type="Explore", model="opus", run_in_background=true,
+  prompt="Audit backend for: security, auth, thread safety, data handling, error handling.")
+```
 
-### Bug checks
-- Orphaned function references
-- Race conditions in concurrent code
-- Error handling gaps
+**Agent 2 — Frontend:** UI code, HTML, CSS
+```
+Agent(subagent_type="Explore", model="opus", run_in_background=true,
+  prompt="Audit frontend for: XSS, accessibility, performance, UX, mobile.")
+```
 
-### Performance checks
-- Repeated expensive operations
-- DOM rebuilds on large datasets
-- Missing caching
+**Agent 3 — Infrastructure:** config, deployment, dependencies
+```
+Agent(subagent_type="Explore", model="opus", run_in_background=true,
+  prompt="Audit infra for: security, reliability, performance, container hardening.")
+```
 
-### Code quality
-- Dead code
-- Inconsistent patterns
-- Inline styles vs CSS classes
+Compile results when all 3 complete. Use `/parallel-fix` to fix findings.
+
+### Check areas per agent
+- **Security:** auth bypasses, injection, credential exposure, input validation
+- **Bugs:** race conditions, error handling, orphaned references, logic errors
+- **Performance:** repeated operations, DOM rebuilds, missing caching
+- **Code quality:** dead code, inconsistent patterns, inline styles
 
 ## Output format
 ```
