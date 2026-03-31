@@ -25,12 +25,27 @@ Ensure `~/.git-push-secure.sh` and `~/.github-token` (permissions 600) exist on 
 
 ## Instructions
 
-### Phase 0: Pull latest templates
-Templates are version-controlled on GitHub. Always pull before syncing:
-```bash
-~/.git-push-secure.sh $TEMPLATE_DIR pull
-```
-This ensures you're comparing against the latest version, including improvements from other projects/machines.
+### Phase 0: Sync with GitHub
+Templates are version-controlled on GitHub. Before syncing, check for divergence:
+
+1. **Check for local uncommitted changes**
+   ```bash
+   git -C $TEMPLATE_DIR status --short
+   ```
+   If there are local changes, commit them first (Phase 2b) before pulling.
+
+2. **Check if local and remote have diverged**
+   ```bash
+   ~/.git-push-secure.sh $TEMPLATE_DIR pull
+   ```
+   - **Clean pull (no conflicts):** proceed to Phase 1
+   - **Merge conflict:** both machines changed the same template — resolve manually:
+     1. Read both versions (local vs remote)
+     2. Evaluate which improvements are better
+     3. Merge the best of both
+     4. `git add <resolved files> && git commit -m "Merge: resolve template conflict"`
+   - **Local ahead of remote:** push first, then pull is a no-op
+   - **Remote ahead of local:** pull brings in the latest — review what changed with `git log --oneline -5`
 
 ### Phase 1: Investigate before importing
 Before copying templates into a project, DO NOT blindly import. First:
