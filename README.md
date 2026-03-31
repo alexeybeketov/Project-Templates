@@ -20,7 +20,7 @@ Then customize `CLAUDE.md` for your project (architecture, endpoints, build comm
 8-step change process with gates:
 0. Clarify → 1. Investigate → 2. Design → 3. Implement → 4. Review → 5. Release → 6. Done → 7. Document → 8. Retrospective
 
-### Skills (19)
+### Skills (22)
 
 | Category | Skills |
 |---|---|
@@ -30,10 +30,12 @@ Then customize `CLAUDE.md` for your project (architecture, endpoints, build comm
 | **Debug** | `/investigate`, `/hotfix` |
 | **Strategy** | `/research`, `/architecture` |
 | **Agents** | `/parallel-fix`, `/explore` |
-| **System** | `/improve`, `/memory`, `/skill-builder` |
+| **System** | `/improve`, `/memory`, `/skill-builder`, `/sync-templates` |
 
 ### Hooks (settings.local.json)
 - **PreToolUse** on `git commit` — blocks commit if `/plan` and `/review` weren't run
+- **PostToolUse** on skill edits — reminds to run `/sync-templates`
+- **PostToolUse** on `git tag` — reminds to run `/document` and `/retrospective`
 - **Stop** — reminds about `/retrospective` at session end
 
 ## Template Sync Loop
@@ -42,6 +44,14 @@ Templates and project skills form a closed learning loop:
 
 ```
 Templates ──import──> Project Skills ──improve──> Project Skills ──export──> Templates
+                                                                       │
+                                                                  git push
+                                                                       │
+                                                                    GitHub
+                                                                       │
+                                                                  git pull
+                                                                       │
+                                                                Other Machines
 ```
 
 **Rules:**
@@ -50,6 +60,12 @@ Templates ──import──> Project Skills ──improve──> Project Skills
 - Keep project-specific customizations local
 - Lessons that appear in 2+ projects become template lessons
 - `/improve` includes template sync as step 6
+
+## Multi-Machine Sync
+
+Templates are synced to GitHub at [Project-Templates](https://github.com/alexeybeketov/Project-Templates). The `/sync-templates` skill includes a Phase 4 that commits and pushes changes via a secure wrapper script.
+
+**Security:** GitHub token is stored outside the repo in `~/.github-token` (permissions 600). Never committed, never logged.
 
 ## Philosophy
 
