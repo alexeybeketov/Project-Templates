@@ -122,7 +122,7 @@ When working on multiple projects:
 - Project-specific commands (deploy scripts, API URLs)
 - Hardcoded paths, IPs, credentials
 - Project-specific checklist items (specific endpoint names)
-- Domain-specific patterns (camera presets, FTP config)
+- Domain-specific patterns (hardware configs, protocol settings)
 
 ## Output format
 ```
