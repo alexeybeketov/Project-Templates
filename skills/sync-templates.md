@@ -18,6 +18,13 @@ Templates ──import──> Project Skills ──improve──> Project Skills
 
 ## Instructions
 
+### Phase 0: Pull latest templates
+Templates are version-controlled. Always pull before syncing:
+```bash
+cd /volume1/home/nas_alexey/project-templates && git pull origin main
+```
+This ensures you're comparing against the latest version, including improvements from other projects/machines.
+
 ### Phase 1: Investigate before importing
 Before copying templates into a project, DO NOT blindly import. First:
 
@@ -59,6 +66,13 @@ After improving a skill in any project:
    # Review: remove project-specific commands, paths, endpoints
    ```
 
+3. **Push template changes**
+   ```bash
+   cd /volume1/home/nas_alexey/project-templates
+   git add -A && git commit -m "Sync: [what changed]" && git push origin main
+   ```
+   This makes improvements available to other projects/machines.
+
 ### Phase 3: Cross-project learning
 When working on multiple projects:
 
@@ -83,38 +97,6 @@ When working on multiple projects:
 - Hardcoded paths, IPs, credentials
 - Project-specific checklist items (specific endpoint names)
 - Domain-specific patterns (camera presets, FTP config)
-
-## Phase 4: Push to GitHub
-
-After exporting improvements to templates, commit and push to GitHub so other machines can pull:
-
-1. **Check for changes**
-   ```bash
-   git -C /volume1/home/nas_alexey/project-templates status --short
-   ```
-
-2. **Stage changed files by name** (never `git add -A`)
-   ```bash
-   git -C /volume1/home/nas_alexey/project-templates add <specific files>
-   ```
-
-3. **Commit with context**
-   ```bash
-   git -C /volume1/home/nas_alexey/project-templates commit -m "sync: <what changed>"
-   ```
-
-4. **Push using the secure wrapper** (token stored in ~/.github-token with 600 permissions)
-   ```bash
-   /volume1/home/nas_alexey/.git-push-secure.sh /volume1/home/nas_alexey/project-templates
-   ```
-
-### Security rules
-- **NEVER** hardcode tokens in skill files, CLAUDE.md, or any git-tracked file
-- **NEVER** put tokens in git remote URLs
-- **NEVER** log or echo the token value
-- Token is stored ONLY in `~/.github-token` (permissions 600, not git-tracked)
-- The push wrapper script is OUTSIDE the repo (not git-tracked)
-- If the token needs rotation: update `~/.github-token` only
 
 ## Output format
 ```
