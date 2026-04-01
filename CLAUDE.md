@@ -43,6 +43,8 @@
 - Do NOT start a new task until Steps 6-7 are complete
 - If any gate fails, go back to the indicated step
 - If the request is unclear, ASK — do not guess (Step 0)
+- Batch fixes (audit, multi-file) still follow the process — `/plan` once for scope, `/review` before each commit
+- Config changes to third-party systems MUST verify options exist in official docs (Step 1: Investigate)
 
 **Skills (USE THEM — they exist in .claude/skills/):**
 - Step 0-2: Use `/plan` skill
@@ -164,4 +166,6 @@ Use the **5 Whys** on every issue: symptom → cause → why it existed → why 
 | 12 | CSRF defined ≠ applied | Defining CSRF middleware but not adding it to route mounts = zero protection. Verify middleware is in the `app.use()` chain | SPT |
 | 13 | Error message leakage | Never return `err.message` to clients — DB errors expose schema. Return generic message, log details server-side | SPT |
 | 14 | Fix ALL instances | Two tables/views showing same data — fixing one misses the other. Always search for ALL instances before declaring complete | SPT |
+| 15 | Verify config fields | Traefik crashed on invalid `maxAge`/`maxSize` fields. Always verify config options exist in target system's official docs before adding | SPT |
+| 16 | Process under pressure | Skipping /plan and /review during batch fixes caused a deploy-breaking config error. Follow the process especially when it feels urgent | SPT |
 <!-- Add lessons as they occur -->
