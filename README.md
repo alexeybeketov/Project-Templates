@@ -20,7 +20,7 @@ Then customize `CLAUDE.md` for your project (architecture, endpoints, build comm
 8-step change process with gates:
 0. Clarify → 1. Investigate → 2. Design → 3. Implement → 4. Review → 5. Release → 6. Done → 7. Document → 8. Retrospective
 
-### Skills (22)
+### Skills (23)
 
 | Category | Skills |
 |---|---|
@@ -30,6 +30,7 @@ Then customize `CLAUDE.md` for your project (architecture, endpoints, build comm
 | **Debug** | `/investigate`, `/hotfix` |
 | **Strategy** | `/research`, `/architecture` |
 | **Agents** | `/parallel-fix`, `/explore` |
+| **Refactoring** | `/extract-component` |
 | **System** | `/improve`, `/memory`, `/skill-builder`, `/sync-templates` |
 
 ### Hooks (settings.local.json)
