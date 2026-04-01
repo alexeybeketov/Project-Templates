@@ -123,20 +123,24 @@ Self-review the diff:
 - [ ] Feature works end-to-end
 - [ ] If UI changed: hard refresh and check visually
 
-### Step 6: Definition of Done
-- [ ] Code implements what was agreed
-- [ ] All review checks pass
-- [ ] Deploy verified
-- [ ] No regressions
-- [ ] For UI: user confirmed it looks right
+### Step 6: Verify
+- [ ] Health check — confirm new version running
+- [ ] All processes/containers running
+- [ ] Logs clean — no errors
+- [ ] Feature works end-to-end
+- [ ] If UI changed: hard refresh and check visually
+- **Gate:** Output the `/verify` table
 
 ### Step 7: Document
 Update if behavior changed:
-- README.md — user-facing
-- CLAUDE.md — architecture, endpoints, dev notes
+- CHANGELOG.md — version entry with what changed
+- README.md — user-facing features
+- CLAUDE.md — architecture, endpoints, dev notes, lessons learned
 - In-app help — mirrors user-facing docs
+- **Gate:** Output the `/document` table
 
-### Step 8: Retrospective (MANDATORY — never skip)
+### Step 8: Close (MANDATORY — never skip)
+Post-deploy is a sequence, not one step. Run each or explicitly skip with reason:
 Use the **5 Whys** on every issue: symptom → cause → why it existed → why not caught → process gap → **principle**.
 
 1. **Did it work first time?** → No → 5 Whys → Add principle to Lessons Learned
@@ -174,4 +178,5 @@ Use the **5 Whys** on every issue: symptom → cause → why it existed → why 
 | 20 | Audit sampling gap | Agent-based audits sample 5-8 files per run. Always follow with exhaustive grep scans for known vulnerability patterns across ALL files | SPT |
 | 21 | SQL column interpolation | `${appCode}_role` from user params enables SQL injection even when the value passes a DB lookup. Use a whitelist map instead | SPT |
 | 22 | Pattern repetition vs shared modules | Repeated security patterns (CSRF, auth, error handler) across multiple backends = many findings per audit. Extract into shared modules — one fix applies everywhere. Automation catches pattern violations; human review catches novel issues | SPT |
+| 23 | Post-deploy is a sequence | `/verify`, `/document`, `/cleanup`, `/memory` consistently skipped when treated as optional. Make them explicit steps in the Change Process — each must produce output or be explicitly skipped with reason | SPT |
 <!-- Add lessons as they occur -->
