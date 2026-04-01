@@ -202,4 +202,6 @@ Use the **5 Whys** on every issue: symptom → cause → why it existed → why 
 | 38 | Zod .partial() for PUT schemas | POST schemas validate required fields. PUT schemas use `.partial()` — all fields optional since updates are incremental. Clean reuse pattern | SPT |
 | 39 | Per-field import schemas | Import endpoints use different field names (watches, levels, types). Create one schema per field name rather than a generic one. Catches mismatched field names at Zod level | SPT |
 | 40 | Agent batching for mechanical changes | Zod wiring across 104 endpoints done via parallel agents (2-3 per batch). Each agent handles one backend. Pattern: create schemas → wire to routes → build → verify | SPT |
+| 41 | Component extraction breaks closure scope | Components defined inside a parent function share state via closure. Extracting to separate files breaks this. Need React Context or prop drilling BEFORE extraction. Build succeeds but white screen at runtime | SPT |
+| 42 | Build success ≠ render success | Vite build passing and container healthy does NOT mean the React app renders. Frontend refactors MUST be browser-verified before commit | SPT |
 <!-- Add lessons as they occur -->
