@@ -140,8 +140,8 @@ Update if behavior changed:
 - In-app help — mirrors user-facing docs
 - **Gate:** Output the `/document` table
 
-### Step 8: Close (MANDATORY — never skip)
-Post-deploy is a sequence, not one step. Run each or explicitly skip with reason:
+### Step 8: Close — STOP. Do not start next task.
+Post-deploy is a sequence, not one step. Run ALL or explicitly skip with reason:
 
 **8a. `/retrospective`** (always):
 Use the **5 Whys** on every issue: symptom → cause → why it existed → why not caught → process gap → **principle**.
@@ -196,4 +196,6 @@ Use the **5 Whys** on every issue: symptom → cause → why it existed → why 
 | 32 | Magic byte validation | MIME type from Content-Type header is user-controlled. Validate actual file content (magic bytes) after upload, before DB insert. Delete file on mismatch | SPT |
 | 33 | GitHub token scopes | Creating `.github/workflows/` files requires token with `workflow` scope. Verify before pushing or the push will be rejected | SPT |
 | 34 | ZAP internal vs external | ZAP scanning internal nginx shows missing headers that Traefik adds externally. Always scan the external URL for accurate results | SPT |
+| 35 | Dockerfile COPY for new directories | Adding a new source directory (schemas/, tests/) requires updating the Dockerfile COPY directives. Container crashes with MODULE_NOT_FOUND otherwise | SPT |
+| 36 | Step 8 skipping is structural | Gentle reminders don't prevent Step 8 skipping. Use "STOP. Do not start next task." as hard break. If still skipped, the process needs automation not instruction | SPT |
 <!-- Add lessons as they occur -->
