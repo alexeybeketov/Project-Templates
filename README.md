@@ -20,11 +20,11 @@ Then customize `CLAUDE.md` for your project (architecture, endpoints, build comm
 8-step change process with gates:
 0. Clarify → 1. Investigate → 2. Design → 3. Implement → 4. Review → 5. Release → 6. Done → 7. Document → 8. Retrospective
 
-### Skills (20)
+### Skills (21)
 
 | Category | Skills |
 |---|---|
-| **Per-change** | `/plan`, `/review`, `/release`, `/verify`, `/retrospective`, `/document` |
+| **Per-change** | `/plan`, `/review`, `/checklist`, `/release`, `/verify`, `/retrospective`, `/document` |
 | **Fast path** | `/quick-fix` |
 | **Quality** | `/audit`, `/test`, `/cleanup` |
 | **Debug** | `/investigate`, `/hotfix` |
@@ -72,8 +72,22 @@ Templates are synced to GitHub via `/sync-templates`. The skill includes phases 
 
 ## Philosophy
 
-- Skills are documentation that becomes habit through hooks
+- Skills are documentation that becomes habit through use
 - Every failure feeds back into the process (retrospective)
 - Small improvements compound over time
-- Automate enforcement, not judgment
+- Enforce through CLAUDE.md rules (always in context), not hooks (unreliable)
 - Templates learn from every project, every project learns from templates
+
+## Adoption Guide
+
+Expect friction during the first 3 sessions. The workflow feels slow at first because it adds steps before and after coding. Here's what to expect:
+
+| Session | What happens | What to do |
+|---------|-------------|------------|
+| 1-2 | You'll skip `/verify`, `/document`, `/sync-templates` after deploying | User reminds. Add the step. It becomes visible. |
+| 3-4 | Pre-coding steps (`/plan`, `/review`) feel natural. Post-deploy steps still get skipped. | Focus on Step 8 (Close) — force output from each sub-skill. |
+| 5+ | Full workflow runs without reminders. New lessons flow back to templates. | The process is working. |
+
+**Key insight from SPT adoption:** The post-deploy skills (`/verify`, `/document`, `/cleanup`, `/memory`, `/sync-templates`) break down because they feel like "extra work after the real work is done." The fix is making them explicit numbered steps with required output — not optional afterthoughts.
+
+**Enforcement:** CLAUDE.md rules are more reliable than hooks. `$TOOL_INPUT` in hooks is unreliable. Put mandatory rules in CLAUDE.md where they're always in the conversation context.

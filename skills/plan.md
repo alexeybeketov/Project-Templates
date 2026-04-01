@@ -10,6 +10,8 @@ At the start of any feature or fix. Invoke with `/plan`. For trivial fixes, use 
 2. **What happens on close/navigate/escape?** (cleanup timers, reset state, restore UI)
 3. **What happens on double-click/rapid fire?** (guards, disabled states)
 4. **What other code references what I'm changing?** (grep for function/variable names)
+5. **Will this create new files/directories?** (add to .gitignore BEFORE creating if generated/sensitive)
+6. **Does this change config for a third-party system?** (verify options exist in official docs before adding)
 
 ## Full plan (for non-trivial changes)
 

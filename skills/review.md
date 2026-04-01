@@ -45,6 +45,12 @@ After implementing, before committing. Invoke with `/review`.
 - [ ] No dead code introduced
 - [ ] Config/schema changes backward compatible
 
+### Release readiness
+- [ ] Version bumped if behavior changed (code files + docs)
+- [ ] CHANGELOG.md updated with what changed
+- [ ] New generated files/directories added to .gitignore BEFORE creation
+- [ ] No secrets, backups, or sensitive data staged for commit (`git diff --cached --stat`)
+
 ## Bounded fix loop
 If review finds issues: fix → re-review. **Max 3 iterations.** If still failing after 3, escalate to the user — the approach may be wrong.
 
