@@ -47,14 +47,15 @@
 - Config changes to third-party systems MUST verify options exist in official docs (Step 1: Investigate)
 
 **Skills (USE THEM — they exist in .claude/skills/):**
-- Step 0-2: Use `/plan` skill
-- Step 4: Use `/review` skill
-- Step 5: Use `/release` skill (includes `/verify`)
-- Step 7: Use `/document` skill
-- Step 8: Use `/retrospective` skill
-- Debugging: Use `/investigate` or `/hotfix`
-- Before features: Use `/research` and `/architecture`
-- Periodic: Use `/improve`, `/audit`, `/test`
+- Step 0-2: `/plan`
+- Step 4: `/review` (full) or `/checklist` (quick pre-commit gate)
+- Step 5: `/release`
+- Step 6: `/verify`
+- Step 7: `/document`
+- Step 8: `/retrospective`, `/cleanup`, `/memory`, `/improve`, `/sync-templates`
+- Debugging: `/investigate` or `/hotfix`
+- Before features: `/research` and `/architecture`
+- Periodic: `/improve`, `/audit`, `/test`
 
 **Visibility enforcement:**
 - Before each step, output `**Step N: Name**` as a header
@@ -141,16 +142,21 @@ Update if behavior changed:
 
 ### Step 8: Close (MANDATORY — never skip)
 Post-deploy is a sequence, not one step. Run each or explicitly skip with reason:
-Use the **5 Whys** on every issue: symptom → cause → why it existed → why not caught → process gap → **principle**.
 
+**8a. `/retrospective`** (always):
+Use the **5 Whys** on every issue: symptom → cause → why it existed → why not caught → process gap → **principle**.
 1. **Did it work first time?** → No → 5 Whys → Add principle to Lessons Learned
 2. **Did it cause a regression?** → Yes → Add check to Step 4
 3. **Was the design right?** → No → Add question to Step 2
 4. **Was the request clear?** → No → Add to Step 0
 5. **Can something be automated?** → Yes → Implement it
 
-**Verify the loop is closed:** Which step was updated? Read it back. Does it prevent this class of problem? If not, revise.
-- *Learn:* Are the right questions being asked at each step? Should steps be reordered, merged, split, or added?
+**Verify the loop is closed:** Which step was updated? Read it back. Does it prevent this class of problem?
+
+**8b. `/cleanup`** (always): Remove dangling images, old builds, check disk space.
+**8c. `/memory`** (if session ending): Save handoff state for next session.
+**8d. `/improve`** (if milestone): Review process, skills, architecture health.
+**8e. `/sync-templates`** (if skills changed): Export universal improvements, check for leaks.
 
 ## Lessons Learned
 
