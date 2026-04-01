@@ -173,4 +173,5 @@ Use the **5 Whys** on every issue: symptom → cause → why it existed → why 
 | 19 | Rate limiting consistency | All backend services in a platform must have rate limiting. Missing it on one service creates an asymmetric DoS vector | SPT |
 | 20 | Audit sampling gap | Agent-based audits sample 5-8 files per run. Always follow with exhaustive grep scans for known vulnerability patterns across ALL files | SPT |
 | 21 | SQL column interpolation | `${appCode}_role` from user params enables SQL injection even when the value passes a DB lookup. Use a whitelist map instead | SPT |
+| 22 | Pattern repetition vs shared modules | Repeated security patterns (CSRF, auth, error handler) across multiple backends = many findings per audit. Extract into shared modules — one fix applies everywhere. Automation catches pattern violations; human review catches novel issues | SPT |
 <!-- Add lessons as they occur -->
