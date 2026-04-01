@@ -198,4 +198,8 @@ Use the **5 Whys** on every issue: symptom → cause → why it existed → why 
 | 34 | ZAP internal vs external | ZAP scanning internal nginx shows missing headers that Traefik adds externally. Always scan the external URL for accurate results | SPT |
 | 35 | Dockerfile COPY for new directories | Adding a new source directory (schemas/, tests/) requires updating the Dockerfile COPY directives. Container crashes with MODULE_NOT_FOUND otherwise | SPT |
 | 36 | Step 8 skipping is structural | Gentle reminders don't prevent Step 8 skipping. Use "STOP. Do not start next task." as hard break. If still skipped, the process needs automation not instruction | SPT |
+| 37 | Partial code replacement leaves dangling blocks | When replacing inline validation with middleware, remove the ENTIRE old block including closing brace. Build and verify before commit | SPT |
+| 38 | Zod .partial() for PUT schemas | POST schemas validate required fields. PUT schemas use `.partial()` — all fields optional since updates are incremental. Clean reuse pattern | SPT |
+| 39 | Per-field import schemas | Import endpoints use different field names (watches, levels, types). Create one schema per field name rather than a generic one. Catches mismatched field names at Zod level | SPT |
+| 40 | Agent batching for mechanical changes | Zod wiring across 104 endpoints done via parallel agents (2-3 per batch). Each agent handles one backend. Pattern: create schemas → wire to routes → build → verify | SPT |
 <!-- Add lessons as they occur -->

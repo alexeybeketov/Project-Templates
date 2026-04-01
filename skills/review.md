@@ -19,6 +19,8 @@ After implementing, before committing. Invoke with `/review`.
 - [ ] Content-Disposition filenames sanitized (strip quotes, newlines, control chars)
 - [ ] Error handlers default to safe (`!== 'development'`, not `=== 'production'`)
 - [ ] Rate limiting applied consistently across all backend services
+- [ ] New POST/PUT endpoints have Zod schema validation middleware
+- [ ] File uploads validate magic bytes (not just MIME type from header)
 
 ### Functionality
 - [ ] Does exactly what was asked — nothing more
