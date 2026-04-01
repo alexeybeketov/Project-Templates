@@ -20,7 +20,7 @@ Then customize `CLAUDE.md` for your project (architecture, endpoints, build comm
 8-step change process with gates:
 0. Clarify → 1. Investigate → 2. Design → 3. Implement → 4. Review → 5. Release → 6. Done → 7. Document → 8. Retrospective
 
-### Skills (22)
+### Skills (20)
 
 | Category | Skills |
 |---|---|
@@ -33,10 +33,9 @@ Then customize `CLAUDE.md` for your project (architecture, endpoints, build comm
 | **System** | `/improve`, `/memory`, `/skill-builder`, `/sync-templates` |
 
 ### Hooks (settings.local.json)
-- **PreToolUse** on `git commit` — blocks commit if `/plan` and `/review` weren't run
-- **PostToolUse** on skill edits — reminds to run `/sync-templates`
-- **PostToolUse** on `git tag` — reminds to run `/document` and `/retrospective`
-- **Stop** — reminds about `/retrospective` at session end
+- **Stop** — session exit checklist (document, retrospective, sync-templates, improve)
+
+Note: PreToolUse hooks for blocking commits/edits were tested and found unreliable (`$TOOL_INPUT` variable content unpredictable). Enforcement is better handled via CLAUDE.md rules which are always in the conversation context.
 
 ## Template Sync Loop
 
