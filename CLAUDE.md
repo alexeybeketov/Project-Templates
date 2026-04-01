@@ -205,4 +205,5 @@ Use the **5 Whys** on every issue: symptom → cause → why it existed → why 
 | 41 | Component extraction breaks closure scope | Components defined inside a parent function share state via closure. Extracting to separate files breaks this. Need React Context or prop drilling BEFORE extraction. Build succeeds but white screen at runtime | SPT |
 | 42 | Build success ≠ render success | Vite build passing and container healthy does NOT mean the React app renders. Frontend refactors MUST be browser-verified before commit | SPT |
 | 43 | Verify render before refactor | Before extracting/refactoring a component, grep for `<ComponentName` to verify it's actually rendered. 3 components extracted that were dead code — wasted effort + caused bugs | SPT |
+| 44 | sed line ranges unreliable for large file refactoring | Using `sed -i 'N,Md'` on 47K-line files caused white screen 3x — off-by-one, wrong boundary. Use IDE with real-time preview for monolith splitting, not CLI text manipulation | SPT |
 <!-- Add lessons as they occur -->
