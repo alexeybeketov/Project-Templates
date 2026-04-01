@@ -168,4 +168,7 @@ Use the **5 Whys** on every issue: symptom → cause → why it existed → why 
 | 14 | Fix ALL instances | Two tables/views showing same data — fixing one misses the other. Always search for ALL instances before declaring complete | SPT |
 | 15 | Verify config fields | Traefik crashed on invalid `maxAge`/`maxSize` fields. Always verify config options exist in target system's official docs before adding | SPT |
 | 16 | Process under pressure | Skipping /plan and /review during batch fixes caused a deploy-breaking config error. Follow the process especially when it feels urgent | SPT |
+| 17 | Content-Disposition injection | Unsanitized filenames in Content-Disposition headers allow header injection via quotes/CRLF. Always strip `"`, `\r`, `\n`, control chars from filenames | SPT |
+| 18 | Error handler safe default | `NODE_ENV === 'production'` fails open (leaks on missing var). Use `NODE_ENV === 'development'` to fail closed — only leak in explicit dev mode | SPT |
+| 19 | Rate limiting consistency | All backend services in a platform must have rate limiting. Missing it on one service creates an asymmetric DoS vector | SPT |
 <!-- Add lessons as they occur -->

@@ -16,6 +16,9 @@ After implementing, before committing. Invoke with `/review`.
 - [ ] SQL queries use parameterized statements (no string interpolation)
 - [ ] File writes use atomic pattern (temp + rename)
 - [ ] CSRF middleware defined AND applied to route mounts (not just defined)
+- [ ] Content-Disposition filenames sanitized (strip quotes, newlines, control chars)
+- [ ] Error handlers default to safe (`!== 'development'`, not `=== 'production'`)
+- [ ] Rate limiting applied consistently across all backend services
 
 ### Functionality
 - [ ] Does exactly what was asked — nothing more
