@@ -8,7 +8,9 @@ When splitting large single-file React apps. Invoke with `/extract-component`.
 ## Pre-flight checks (MANDATORY)
 1. **Is it rendered?** `grep "<ComponentName"` — if 0, it's dead code
 2. **Does it receive props?** Prop-based = safe. Closure = needs Context first
-3. **Browser-test after EVERY extraction** — build success ≠ render success
+3. **Exhaustive dep check:** Extract ALL identifiers from body, filter React/CSS/HTML builtins. Remainder = closure deps. Do NOT just grep for known variables.
+4. **Import path depth:** Match `../` depth to file location relative to context/utils
+5. **Browser-test after EVERY extraction** — build success ≠ render success
 
 ## Types
 
