@@ -36,6 +36,10 @@ Run grep-based scans for ALL known vulnerability patterns. Customize paths for y
 14. `RETURNING *` (over-exposure, defense-in-depth)
 15. Weak password fallback defaults in config files
 16. Missing authorization on write endpoints
+17. Mutation endpoints missing input validation (Zod/Joi)
+18. Unescaped user data in HTML email templates
+19. Dead/unused component definitions (defined but never rendered)
+20. Console.log calls leaking internal state in production
 
 ### Phase 2: Scope Check
 
