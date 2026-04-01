@@ -179,4 +179,7 @@ Use the **5 Whys** on every issue: symptom → cause → why it existed → why 
 | 21 | SQL column interpolation | `${appCode}_role` from user params enables SQL injection even when the value passes a DB lookup. Use a whitelist map instead | SPT |
 | 22 | Pattern repetition vs shared modules | Repeated security patterns (CSRF, auth, error handler) across multiple backends = many findings per audit. Extract into shared modules — one fix applies everywhere. Automation catches pattern violations; human review catches novel issues | SPT |
 | 23 | Post-deploy is a sequence | `/verify`, `/document`, `/cleanup`, `/memory` consistently skipped when treated as optional. Make them explicit steps in the Change Process — each must produce output or be explicitly skipped with reason | SPT |
+| 24 | Hardcoded passwords survive file deletion | Deleting legacy files misses the same passwords duplicated in active files. Always grep for the actual credential string across the entire repo, not just the known file | SPT |
+| 25 | Nginx `add_header` inheritance trap | Security headers in server block are replaced (not appended) by `add_header` in nested location blocks. Static asset locations lose all security headers unless they duplicate them | SPT |
+| 26 | `.dockerignore` per build context | Root `.dockerignore` only applies to `context: .` builds. Sub-app builds (`context: ./jce`) need their own `.dockerignore` or `node_modules`/`.env` leak into build layers | SPT |
 <!-- Add lessons as they occur -->
