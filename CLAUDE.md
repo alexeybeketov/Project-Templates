@@ -192,4 +192,8 @@ Use the **5 Whys** on every issue: symptom → cause → why it existed → why 
 | 28 | HTML injection in emails | User-controlled data (username, name) interpolated into HTML email templates without escaping enables phishing content in admin emails. Always `escapeHtml()` user data in templates | SPT |
 | 29 | Hardcoded fallback secrets | `ENCRYPTION_KEY="${VAR:-default}"` in scripts means backups encrypted with a public key when env var is unset. Fail closed — refuse to run without the secret | SPT |
 | 30 | INTERVAL SQL interpolation | `INTERVAL '${days} days'` is injectable even with `parseInt` (NaN becomes literal string). Use `$1 * INTERVAL '1 day'` with parameterized integer | SPT |
+| 31 | IDOR on every mutation endpoint | 34 HIGH endpoints found where any authenticated user could delete any record by ID. Every POST/PUT/DELETE needs role authorization, not just authentication | SPT |
+| 32 | Magic byte validation | MIME type from Content-Type header is user-controlled. Validate actual file content (magic bytes) after upload, before DB insert. Delete file on mismatch | SPT |
+| 33 | GitHub token scopes | Creating `.github/workflows/` files requires token with `workflow` scope. Verify before pushing or the push will be rejected | SPT |
+| 34 | ZAP internal vs external | ZAP scanning internal nginx shows missing headers that Traefik adds externally. Always scan the external URL for accurate results | SPT |
 <!-- Add lessons as they occur -->
