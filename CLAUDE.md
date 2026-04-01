@@ -188,4 +188,8 @@ Use the **5 Whys** on every issue: symptom → cause → why it existed → why 
 | 24 | Hardcoded passwords survive file deletion | Deleting legacy files misses the same passwords duplicated in active files. Always grep for the actual credential string across the entire repo, not just the known file | SPT |
 | 25 | Nginx `add_header` inheritance trap | Security headers in server block are replaced (not appended) by `add_header` in nested location blocks. Static asset locations lose all security headers unless they duplicate them | SPT |
 | 26 | `.dockerignore` per build context | Root `.dockerignore` only applies to `context: .` builds. Sub-app builds (`context: ./jce`) need their own `.dockerignore` or `node_modules`/`.env` leak into build layers | SPT |
+| 27 | Dev-mode auth bypass | `if (NODE_ENV !== 'production') { req.user = fakeAdmin }` grants Admin to all requests if env var is unset. Never fail open on auth — fail closed with 503 | SPT |
+| 28 | HTML injection in emails | User-controlled data (username, name) interpolated into HTML email templates without escaping enables phishing content in admin emails. Always `escapeHtml()` user data in templates | SPT |
+| 29 | Hardcoded fallback secrets | `ENCRYPTION_KEY="${VAR:-default}"` in scripts means backups encrypted with a public key when env var is unset. Fail closed — refuse to run without the secret | SPT |
+| 30 | INTERVAL SQL interpolation | `INTERVAL '${days} days'` is injectable even with `parseInt` (NaN becomes literal string). Use `$1 * INTERVAL '1 day'` with parameterized integer | SPT |
 <!-- Add lessons as they occur -->
