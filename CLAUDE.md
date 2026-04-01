@@ -171,4 +171,6 @@ Use the **5 Whys** on every issue: symptom → cause → why it existed → why 
 | 17 | Content-Disposition injection | Unsanitized filenames in Content-Disposition headers allow header injection via quotes/CRLF. Always strip `"`, `\r`, `\n`, control chars from filenames | SPT |
 | 18 | Error handler safe default | `NODE_ENV === 'production'` fails open (leaks on missing var). Use `NODE_ENV === 'development'` to fail closed — only leak in explicit dev mode | SPT |
 | 19 | Rate limiting consistency | All backend services in a platform must have rate limiting. Missing it on one service creates an asymmetric DoS vector | SPT |
+| 20 | Audit sampling gap | Agent-based audits sample 5-8 files per run. Always follow with exhaustive grep scans for known vulnerability patterns across ALL files | SPT |
+| 21 | SQL column interpolation | `${appCode}_role` from user params enables SQL injection even when the value passes a DB lookup. Use a whitelist map instead | SPT |
 <!-- Add lessons as they occur -->
