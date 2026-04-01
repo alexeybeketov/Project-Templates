@@ -25,6 +25,13 @@ Write skill files in `.claude/skills/` with:
 - Step-by-step instructions
 - Output format
 
-### 4. Report
+### 4. Validate against failure cases
+Before deploying a new skill:
+- Test against the **easy case** (should succeed)
+- Test against the **hard case** (should succeed OR fail gracefully)
+- A skill validated only on easy cases will fail silently on hard cases
+
+### 5. Report
 - Skills created/updated
 - Workflows that can't be automated (and why)
+- Validation results (easy + hard case)
