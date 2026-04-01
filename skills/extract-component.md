@@ -11,19 +11,33 @@ When splitting large single-file React apps. Invoke with `/extract-component`.
 3. **Browser-test after EVERY extraction** — build success ≠ render success
 
 ## Types
-- **Type A (prop-based):** Receives all data via props. Extract directly.
-- **Type B (closure-bound):** Accesses parent state. Create Context first.
-- **Type C (mixed):** Props for caller data, Context for shared state.
+
+### Type A (prop-based) — LOW RISK
+Receives all data via props. Extract in 3 phases:
+```
+Phase A1: Create files (agents — haiku model, parallel batches of 4)
+  - Agent creates new file, does NOT modify parent
+Phase A2: Wire imports (manual — single Edit per batch)
+  - Add imports, build to verify
+Phase A3: Remove inline definitions (manual — sed bottom-up)
+  - Find boundaries, remove from bottom to top, build + browser verify
+```
+
+### Type B (closure-bound) — HIGH RISK
+Accesses parent state via closure. Create Context first, then extract.
+
+### Type C (mixed)
+Props for caller data, Context for shared state.
 
 ## Safe deletion for large files
-1. Edit tool: replace first unique lines with comment marker
-2. sed: delete between marker and next component
+1. Find boundary: `awk "NR > START && /^  const [A-Z]/ { print NR; exit }"`
+2. Remove bottom-up (prevents line number shifts)
 3. If fails: `git show HEAD:file` to recover content
-4. NEVER use sed line ranges — use content markers
+4. NEVER use sed line ranges — use boundary detection
 
 ## Phased approach (strangler fig)
 1. Inventory all inner components — categorize as A/B/C
-2. Extract Type A first (prop-based modals) — lowest risk
+2. Extract Type A first (prop-based) — lowest risk, haiku agents
 3. Create domain Contexts for shared state
 4. Extract Type B using useContext
 5. Old+new coexist during migration
