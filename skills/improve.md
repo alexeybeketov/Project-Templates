@@ -46,16 +46,23 @@ For each action taken:
 - Read it back. Does it prevent this **class** of problem?
 - If not, revise until it does.
 
-## Output format
+## Output format (MANDATORY — each finding MUST have full 5-Why chain)
 ```
 ## Improvement Review — [date]
 
-### Findings (with 5-Whys)
-1. [Finding] → Why: [1] → Why: [2] → Root cause: [principle]
-   Action: [what was updated]
+### Findings
+For EACH finding, output the FULL chain:
+
+1. **What?** [observable problem]
+   **Why 1:** [immediate cause]
+   **Why 2:** [why that cause existed]
+   **Why 3:** [why it wasn't caught]
+   **Why 4:** [process/skill gap]
+   **Root principle:** [what prevents this CLASS of problem]
+   **Action:** [file updated + what changed]
+   **Verified:** [re-read — does it prevent the class?]
 
 ### Template sync
-- Imported: [list]
 - Exported: [list]
 
 ### Verification

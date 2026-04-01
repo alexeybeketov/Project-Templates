@@ -208,4 +208,5 @@ Use the **5 Whys** on every issue: symptom → cause → why it existed → why 
 | 44 | Safe large-file extraction pattern | sed line ranges failed 3x on 47K file. Working pattern: (1) Edit tool to replace first unique lines with comment, (2) sed to remove body between markers, (3) `git show HEAD:file` to recover content for new file, (4) Edit tool for render updates. Always browser-verify | SPT |
 | 45 | Grep-based dep analysis misses variables | Grepping for known variable names misses deps. Exhaustive approach: extract ALL identifiers from component body, filter React/CSS/HTML builtins, remainder = closure deps. Also: import paths differ by directory depth | SPT |
 | 46 | Skills must be validated on failure cases | A skill validated only on easy cases fails silently on hard cases. /skill-builder now requires testing both easy AND hard cases before deploying | SPT |
+| 47 | 5-Whys skipped when not in mandatory output format | /improve had 5-Whys as guidance but not as a gate. Consistently skipped for shallow finding→action. Output format now requires full chain per finding with verification | SPT |
 <!-- Add lessons as they occur -->
