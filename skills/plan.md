@@ -12,7 +12,8 @@ At the start of any feature or fix. Invoke with `/plan`. For trivial fixes, use 
 4. **What other code references what I'm changing?** (grep for function/variable names)
 5. **Will this create new files/directories?** (add to .gitignore BEFORE creating if generated/sensitive)
 6. **Does this change config for a third-party system?** (verify options exist in official docs before adding)
-7. **Refactoring a component?** (grep for render references — is it actually used? Check closure deps. Browser-test every change)
+7. **Refactoring a component?** Run `/extract-component` pre-flight: verify rendered, exhaustive dep check, browser-test every change
+8. **Did `/research` produce recommendations?** Update execution skills with findings. Research in conversation is lost.
 
 ## Full plan (for non-trivial changes)
 

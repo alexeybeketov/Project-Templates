@@ -35,4 +35,7 @@ Before designing significant features. Invoke with `/research [topic]`.
 
 ### Recommendation
 [Pick with reasoning]
+
+### Skills to update
+[Which execution skills need research findings translated into them]
 ```
