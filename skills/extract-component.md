@@ -21,6 +21,8 @@ Phase A1: Create files (agents — haiku model, parallel batches of 4)
   - Agent creates new file, does NOT modify parent
 Phase A2: Wire imports (manual — single Edit per batch)
   - Add imports, build to verify
+  - CRITICAL: Run `grep -oP '<[A-Z][A-Za-z]+' newfile | sort -u` to find ALL JSX component refs
+  - Verify each ref has an import — build passes but undefined components render blank
 Phase A3: Remove inline definitions (manual — sed bottom-up)
   - Find boundaries, remove from bottom to top, build + browser verify
 ```
